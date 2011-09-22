@@ -40,13 +40,7 @@ function pauseme(){
     clearInterval(checkid);
 }
 function start(){
-    var term = document.getElementById("searchterm").value;
-    if (search_term != term){
-        cleartwts();
-        search_term = term;
-        clearq();   
-        sinceid = 0; 
-    }
+    sinceid = 0; 
     ubase = baseurl + escape(search_term);
     getJSON(ubase);
     checkid = setInterval(function(){ addtweet(twtblock); }, disp_intvl);
