@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<html> 
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+        <style type="text/css">
+            a.twtlink{
+                color: #555;
+                text-decoration: none;
+            }
+            a.twtlink:hover{
+                text-decoration: none;
+            }
+            img.profile{
+                border: 1px solid #333;
+            }
+            div.text{
+                margin-left: 6px;
+                line-height: 12px;
+                overflow: hidden;
+            }
+            p.text{
+                margin-top: 5px;
+            }
+            div#twt-display{
+                position: relative;
+                padding: 8px;
+                height: 60px;
+            }
+            div#twt-display table tr td{
+                font-size: 12px;
+            }
+            div#twtsearch{
+                color: #666;
+                font-size: 20px;
+                margin-top: 10px;
+            }
+            canvas#swirl{
+                margin-bottom: -24px;
+            }
+            input#twtsearchinput{
+                border: none;
+                border-bottom: 3px dashed;
+                border-color: #666;
+                font-size: 24px; 
+                color: #333;
+                position: relative; right: 2px;
+            }
+            div#left-column{
+                position: relative;
+                width: 620px;
+            }
+            div#right-column{
+                margin-top: 10px;
+                text-align: left;
+                line-height: 20px;
+                font-size: 13px;
+                color: #666;
+            }
+            div.twttext{
+                /*margin-top: -60px;*/
+                margin-left: 60px;
+                margin-right: 16px;
+                line-height: 12px;
+            }
+
+            div.twt
+            {
+                padding:  10px;
+                border-bottom:  2px solid #fff;
+                background: #eee;
+                font-size:  11px;
+                color:  #333;
+                overflow:  hidden;
+                position: relative;
+            }
+            div.twttext p.twttext
+            {
+                margin-top: 3px;
+            }
+            div.twt:hover
+            {
+                background: #ddd;
+            }
+
+            div.twt img.profile
+            {
+                float:  left;
+                background: #000;
+                border-top:  1px solid #333;
+                border-left:  1px solid #333;
+                border-bottom:  1px solid #666;
+                border-right:  1px solid #666;
+            }
+            div#twtblock{
+                height:510;
+            }
+
+
+
+        </style>
+        <!--<link rel="stylesheet" type="text/css" href="tweet.js" />-->
+        <script src="nflk-live-tweet.js"></script>
+        <script src="nflk-live.js"></script>
+    </head> 
+    <body lang="en-CA" dir="LTR">
+        <img src="http://sciple.org/neuroflocks/NFLKS10_files/header_NFLKS_SFN10.png" width="632" height="68" border="0" >
+        <table>
+            <tr>
+                <td>
+                    <div id="left-column">
+                        <div id="twt-display" height="20"></div><br />
+                        <canvas align="center" id="swirl" width="600" height="600" onclick="cclick(event)">
+                        Unfortunately your browser does not support HTML5.... 
+                        </canvas>
+                    </div>
+                </td>
+                <td style="vertical-align:top">
+                    <div id="right-column">
+                            <input type="text" id="searchterm" value="#fail" />
+                            <input type="button" id="pausebutton" value="Pause" onclick="toggle_pause();"/>
+                            <input type="button" id="clear" value="clear" onclick="cleartwts();"/>
+                            <br /><span id="counter">0</span> tweets in queue.
+                        <div id="twtblock"></div>
+                        <div id="twtsearch"><b>Search:&nbsp; </b><input type="text" id="twtsearchinput" onkeyup="searchtwt(event)" size="7"/></div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <p> 
+        <h1> We are all superstitious...</h1> 
+        <h4> ..and the SfN (society for neuroscience) meeting may be the best place to share our superstitious rituals</h4> 
+        <font size="3", color="#404040"> 
+            Whenever I begin a new experiment or a new project, I do something stupid  (...no, I am not talking about messing up with dilutions or experimental groups assignment  ... that's routine) I am talking about something even stupider:<br/> I open a random page of a random book, if the pagenumber on the left page contains the number 3, then I'll have good chances to publish my new project on a high impact factor journal.
+            <p> 
+            </p> 
+            <p> 
+            why? ...well, because I am a scientist, I believe in magic, I believe in extrasensorial perceptions and I believe in chance controlling my life...
+            </p> 
+            <p> 
+            ..and I know that I am not alone. Superstitious behaviors are a fundamental part of scientists' day-to-day job. Just ask your colleagues, you'll be surprised by the plethora of irrational behaviors that haunt the 'sharp-rigid-cold-mechanistic' brain of a (neuro)scientist. You are not alone! The SfN meeting is a good place to find traces of this dark side of our rational minds.
+            </p> 
+
+            <p> 
+            if you type in the word 'aura' in the visualization above, you'll see that<a href="http://www.newscientist.com/blogs/shortsharpscience/2010/11/auras.html#more" target="_blank"> the proof of existence of auras</a> has generated quite a bit of excitement in the #sfn10 twitter community. The original tweet was re-tweeted almost instantly creating a circular pattern on the spiral (!hint: try to type in the word aura in the applet above...doesn't look like an actual aura? ... scary!).
+            <p> 
+            So it is not surprising that when you look for the first 19 numbers in the SfN10 tweets the only number missing from this distribution is ... well, see the plot here below!
+            </p> 
+            <p> 
+            <img src="http://sciple.org/neuroflocks/NFLKS10_files/Number_distribution.png" width="681" height="184" border="0" > 
+            </p> 
+            <p> 
+            <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="ScipleNeuro">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script> 
+            </p> 
+
+            <br/> 
+            Developed by <b>Leonardo Restivo </b> & <b>Chen Yan</b> 
+            <font size='2'><br/><i> 
+                    and the SciPle.org team [Valentina Mercaldo : Adelaide Yiu : Anne Wheeler : Paul Frankland]</i> 
+            </font> 
+            <p> 
+
+            </p> 
+
+
+        </font> 
+        </p> 
+        Read interviews with neuroscientists on <a href="http://sciple.org/" target="_blank">Sciple.org</a> 
+        <p> 
+        <a href="http://sciple.org/" target="_blank"><img src="http://sciple.org/neuroflocks/NFLKS10_files/SciPle_Home.png" width="795" height="150" border="0" ></a> 
+        </p> 
+    </body> 
+</html>
+<script language="javascript">
+    init();
+    toggle_pause();
+</script>
