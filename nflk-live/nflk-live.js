@@ -96,9 +96,6 @@ function swirladdtweet(twtdata){
 }
 
 
-function getdatestr(s){
-    return s.replace(" +0000", "");
-}
 
 //format twt.data for display
 function fmttwt(twt){
