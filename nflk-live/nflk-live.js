@@ -3,12 +3,12 @@ function coord(x, y){
     this.y = y;
 }
 var center = new coord(300, 300); //center of the swirl
-var npround = 9; //number of tweets per round
+//var npround = 9; //number of tweets per round
 var inner_r = 20; //inner radius of the swirl
-var ddist = 1;  //radius increase per tweet
+//var ddist = 1;  //radius increase per tweet
 var basetwtr = 5; //minimum radius of tweet node
 var l = 20; //total number of tweets
-var inctwtr = 1/npround; //node radius increase per tweet
+var inctwtr = 1/20; //node radius increase per tweet
 var minalpha = 0.5;
 var maxalpha = 0.5;
 var def_color = "rgba(100,100,100,0.1)"; //default color
@@ -16,13 +16,15 @@ var select_color = "rgba(254, 54, 20, 1)"; //selected node color
 var rt_color = "rgba(104, 79, 248, 1)"; //retweet color on search
 var hit_color = "rgba(0, 255, 0, 1)"; //orignals tweet color on search
 var highlight_color = "red"; //keyword highlight color in tweet text
-
+//var ang = 90/180 * Math.PI;
+//var inc_ang = 0;
+var drdist = 0;
 var canvas, ctx;
 var width, height;
 var wordset = [];  //word index, for searching
 var twtlist = [];  //list of all tweets
 var modlist = [];  //list of tweets with different color than default
-var unitang = 2*Math.PI/npround;
+//var unitang = 2*Math.PI/npround;
 var twt_select;    //selected tweet, index in twtlist
 var wordsp ='[`!@#$%\\^&*()\\[\\]\\\\\';.,<>? ~:{}"]'; //regex split words
 var wordnsp ='[^`!@#$%\\^&*()\\[\\]\\\\\';.,<>? ~:{}"]';
@@ -69,9 +71,15 @@ function swirladdtweet(twtdata){
     var r = basetwtr + i * inctwtr;
     var a = 0;
     var rdist = inner_r;
+    
     if (i > 0){
-        rdist = Math.sqrt(twtlist[i-1].rdist*twtlist[i-1].rdist + (r+twtlist[i-1].r)*(r+twtlist[i-1].r));
-        a = twtlist[i-1].a + Math.acos(twtlist[i-1].rdist/rdist)
+        //radial distance in polar coordinate
+        rdist = twtlist[i-1].rdist + drdist; 
+        //angle in polar coordinate
+        var da = Math.acos((twtlist[i-1].rdist*twtlist[i-1].rdist+rdist*rdist-(twtlist[i-1].r+r)*(twtlist[i-1].r+r))/(2*twtlist[i-1].rdist*rdist));
+        a = twtlist[i-1].a + da;
+        //estimate radial increase, so that it won't overlap with next round
+        drdist = inctwtr + r*da/Math.PI; 
     } 
     var x = rdist*Math.cos(a)+center.x;
     var y = rdist*Math.sin(a)+center.y;
