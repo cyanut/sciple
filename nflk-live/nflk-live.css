@@ -1,0 +1,96 @@
+﻿body {
+        background-color:#fff;
+}
+a.twtlink{
+        color: #FFFFFF;
+        text-decoration: none;
+}
+a.twtlink:hover{
+        text-decoration: none;
+}
+img.profile{
+        border: 1px solid #333;
+}
+div.text{
+        margin-left: 6px;
+        line-height: 12px;
+        overflow: hidden;
+}
+p.text{
+        margin-top: 5px;
+}
+div#twt-display{
+        position: relative;
+        padding: 8px;
+        height: 60px;
+}
+div#twt-display table tr td{
+        font-size: 18px;
+}
+div#twtsearch{
+        color: #666;
+        font-size: 20px;
+        margin-top: 10px;
+}
+canvas#swirl{
+        margin-bottom: -24px;
+}
+input#twtsearchinput{
+        border: 2px solid;
+        border-color: #6464C9;
+        font-size: 28px; 
+        color: #666;
+        position: relative; right: 2px;
+}
+div#left-column{
+        background-color:#C8C8C8;
+        position: relative;
+        width: 600px;
+}
+div#right-column{
+        margin-top: 10px;
+        text-align: left;
+        line-height: 20px;
+        font-size: 22px;
+        color: #666;
+}
+div.twttext{
+        margin-left: 60px;
+        margin-right: 16px;
+        line-height: 12px;
+}
+
+
+div.twt
+{
+        padding:  10px;
+        border-bottom:  12px solid #fff;
+        background: #C8C8C8;
+        font-family: helvetica;
+        font-size:  16px;
+        color:  #000;
+        overflow:  hidden;
+        position: relative;
+}
+div.twttext p.twttext
+{
+        margin-top: 3px;
+}
+div.twt:hover
+{
+        background: #6464C9;
+}
+
+
+div.twt img.profile
+{
+        float:  left;
+        background: #000;
+        border-top:  1px solid #333;
+        border-left:  1px solid #333;
+        border-bottom:  1px solid #666;
+        border-right:  1px solid #666;
+}
+div#twtblock{
+        height:510;
+}
