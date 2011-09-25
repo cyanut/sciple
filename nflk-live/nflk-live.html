@@ -9,29 +9,30 @@
         <script src="nflk-live-spiral.js"></script>
     </head> 
     <body lang="en-CA" dir="LTR">
-        <table>
-            <tr>
-                <td>
                     <div id="left-column">
-                        <div id="twt-display" height="20"></div><br />
-                        <canvas align="center" id="swirl" width="600" height="600" onclick="cclick(event)">
+                        <div id="twt-display"></div><br />
+                        <canvas align="center" id="swirl" height=500 width=500 onclick="cclick(event)">
                         Unfortunately your browser does not support HTML5.... 
                         </canvas>
                     </div>
-                </td>
-                <td style="vertical-align:top">
                     <div id="right-column">
         <img src="http://sciple.org/neuroflocks/NFLKS10_files/header_NFLKS_SFN10.png" width="632" height="68" border="0" >
-                        <span id="term"><b><script>document.write(search_term);</script></b></span>
+        <table>
+            <tr>
+                <td>
+        <div id="twtqueue"><span id="term"><b><script>document.write(search_term);</script></b></span>
                             <input type="button" id="pausebutton" value="Pause" onclick="toggle_pause();"/>
                             <input type="button" id="clear" value="clear" onclick="cleartwts();"/>
-                            <br /><span id="counter">0</span> tweets in queue.
-                        <div id="twtblock"></div>
-                        <div id="twtsearch"><b>Search:&nbsp; </b><input type="text" id="twtsearchinput" onkeyup="searchtwt(event)" size="7"/></div>
+                            <br /><i><span id="counter">0</span> tweets in queue...</i></div>
+                        </td>
+                        <td>
+                            <div id="twtsearch"><div id="twtsearchprompt">Search text in tweets </div><input type="text" id="twtsearchinput" onkeyup="searchtwt(event)" size="9"/></div>
+                        </td>
+                    </tr>
+                    </table>
+
+                            <div id="twtblock"></div>
                     </div>
-                </td>
-            </tr>
-        </table>
         <p> 
         <h1> We are all superstitious...</h1> 
         <h4> ..and the SfN (society for neuroscience) meeting may be the best place to share our superstitious rituals</h4> 

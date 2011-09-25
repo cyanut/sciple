@@ -1,5 +1,6 @@
 ﻿body {
-        background-color:#fff;
+        background-color:#c8c8c8;
+        width: 1000px;
 }
 a.twtlink{
         color: #FFFFFF;
@@ -28,31 +29,52 @@ div#twt-display table tr td{
         font-size: 18px;
 }
 div#twtsearch{
-        color: #666;
-        font-size: 20px;
-        margin-top: 10px;
+        color: #424242;
+        font-size: 18px;
+        font-family: helvetica;
+        text-align: right;
+        
+}
+
+div#twtqueue{
+    float: left;
+    font: 24px helvetica bold;
+    color: #777;
+    vertical-align: middle;
+
+}
+div#twtqueue span#term{
+    font-size:18px;
 }
 canvas#swirl{
         margin-bottom: -24px;
+        width: 500;
+        height: 500;
 }
 input#twtsearchinput{
-        border: 2px solid;
+        border: 4px solid;
         border-color: #6464C9;
         font-size: 28px; 
         color: #666;
-        position: relative; right: 2px;
+        position: relative; 
 }
 div#left-column{
         background-color:#C8C8C8;
         position: relative;
-        width: 600px;
+        vertical-align: 0%;
+        width: 500px;
 }
 div#right-column{
-        margin-top: 10px;
+        margin-left: 500px;
+        margin-top: -570px;
+        width: 500px;
         text-align: left;
         line-height: 20px;
         font-size: 22px;
         color: #666;
+}
+div#right-column table{
+    width: 100%;
 }
 div.twttext{
         margin-left: 60px;
@@ -63,8 +85,9 @@ div.twttext{
 
 div.twt
 {
-        padding:  10px;
-        border-bottom:  12px solid #fff;
+        padding:  5px;
+        border:  5px solid #fff;
+
         background: #C8C8C8;
         font-family: helvetica;
         font-size:  16px;
@@ -93,4 +116,6 @@ div.twt img.profile
 }
 div#twtblock{
         height:510;
+        width: 100%;
+        overflow-y: auto;
 }

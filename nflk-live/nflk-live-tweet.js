@@ -3,7 +3,7 @@ var search_intvl = 12000;
 var disp_intvl = 1000;
 var search_term = "#fail";
 var twtblock = "twtblock";
-var maxtwt = 7;
+var maxtwt = -1;
 var maxq = 1000;
 var baseurl = "http://search.twitter.com/search.json?callback=enqarr&result_type=recent&q=";
 var ubase;

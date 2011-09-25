@@ -2,7 +2,7 @@ function coord(x, y){
     this.x = x;
     this.y = y;
 }
-var center = new coord(300, 300); //center of the swirl
+var center = new coord(250, 250); //center of the swirl
 //var npround = 9; //number of tweets per round
 var inner_r = 20; //inner radius of the swirl
 //var ddist = 1;  //radius increase per tweet
