@@ -2,7 +2,7 @@ function coord(x, y){
     this.x = x;
     this.y = y;
 }
-var center = new coord(250, 250); //center of the swirl
+var center = new coord(300, 300); //center of the swirl
 //var npround = 9; //number of tweets per round
 var inner_r = 20; //inner radius of the swirl
 //var ddist = 1;  //radius increase per tweet
@@ -112,9 +112,8 @@ function fmttwt(twt){
     else //match word beginning
         kwreg = new RegExp("(" + wordsp + ")(" + searchterm + ")", "gi");
     var twt = twt.data;
-    var src = twt.source.replace(/&quot;/gi, "\"").replace(/&gt;/gi,'>').replace(/&lt;/gi,'<').replace('href="','class="twtlink" target="_blank" href="');
-    var locstr = " via ";
-    return '<table><tr><td><a class="twtprofile" target="_blank" title="'+twt.from_user+'" href="http://www.twitter.com/'+twt.from_user+'"><img class="profile" title="'+twt.from_user+'" width="48" height="48" src="'+twt.profile_image_url+'" ></a></td><td><div class="text"><p class="text">'+ (searchterm ? linkall((" "+twt.text+" ").replace(kwreg, "$1<font color="+highlight_color+">$2</font>")) : linkall(twt.text)) +'</p><b class="lastline"><a class="twtlink" href="http://www.twitter.com/'+twt.from_user+'" target="_blank" title="'+twt.from_user+'">'+twt.from_user+'</a></b>&nbsp;&nbsp;<a href="http://twitter.com/'+twt.from_user+'/status/'+twt.id+'" target="_blank" class="twtlink">'+getdatestr(twt.created_at)+'</a>'+locstr+'<span class="src">'+src+'</span></div></td></tr></table>';
+    var alttxt = searchterm ? linkall((" "+twt.text+" ").replace(kwreg, "$1<font color="+highlight_color+">$2</font>")) : linkall(twt.text);
+    return getdivstr(twt, alttxt);
 }
 
 function linkall(twttext){

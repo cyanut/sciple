@@ -57,10 +57,8 @@ function addtweet(id){
     if (lenq() > 0){
         var twtblock = document.getElementById(id);
         var twt = deq();
-        var src = twt.source.replace(/&quot;/gi, "\"").replace(/&gt;/gi,'>').replace(/&lt;/gi,'<').replace('href="','class="twtlink" target="_blank" href="');
         cntupdate();
-        var locstr = " via ";
-        var divstr = '<div id="tw'+twt.id+'" class="twt"><a class="twtprofile"  title="'+twt.from_user+'" href="http://www.twitter.com/'+twt.from_user+'"><img class="profile" title="'+twt.from_user+'" width="48" height="48" src="'+twt.profile_image_url+'" ></a><div class="twttext"><p class="twttext">'+linkall(twt.text)+'</p><b class="twtlastline"><a class="twtprofile" href="http://www.twitter.com/'+twt.from_user+' title="'+twt.from_user+'">'+twt.from_user+'</a></b>&nbsp;&nbsp;<a href="http://twitter.com/'+twt.from_user+'/status/'+twt.id+'" class="twtlink">'+ getdatestr(twt.created_at)+'</a>'+locstr+'<span class="src">'+src+'</span></div></div>';
+        var divstr = getdivstr(twt);
         twtblock.innerHTML = divstr + twtblock.innerHTML;
             swirladdtweet(twt);
         if (maxtwt > 0 && twtblock.childNodes.length > maxtwt){
@@ -69,7 +67,12 @@ function addtweet(id){
     }
 }
 
-
+function getdivstr(twt, alttxt){
+        var txt  = alttxt ? alttxt : linkall(twt.text);
+        var locstr = " via ";
+        var src = twt.source.replace(/&quot;/gi, "\"").replace(/&gt;/gi,'>').replace(/&lt;/gi,'<').replace('href="','class="twtlink" target="_blank" href="');
+    return '<div id="tw'+twt.id+'" class="twt"><a class="twtprofile"  title="'+twt.from_user+'" href="http://www.twitter.com/'+twt.from_user+'"><img class="profile" title="'+twt.from_user+'" width="48" height="48" src="'+twt.profile_image_url+'" ></a><div class="twttext"><p class="twttext">'+txt+'</p><b class="twtlastline"><a class="twtlink" href="http://www.twitter.com/'+twt.from_user+'" title="'+twt.from_user+'">'+twt.from_user+'</a></b>&nbsp;&nbsp;<a href="http://twitter.com/'+twt.from_user+'/status/'+twt.id+'" class="twtlink">'+ getdatestr(twt.created_at)+'</a>'+locstr+'<span class="src">'+src+'</span></div></div>';
+}
 function getdatestr(strtwtdate){
     var twtdate = new Date(Date.parse(strtwtdate));
     //datestr += padtime(twtdate.getHours()) + ":" + padtime(twtdate.getMinutes()) + ":" + padtime(twtdate.getSeconds());
