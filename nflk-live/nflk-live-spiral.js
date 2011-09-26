@@ -107,12 +107,15 @@ function swirladdtweet(twtdata){
 
 //format twt.data for display
 function fmttwt(twt){
-    if (is_whole_word)//if search for whole word, match whole word
-        kwreg = new RegExp("("+wordsp+")(" + searchterm + ")(?="+wordsp+")", "gi");
+    if (is_whole_word){//if search for whole word, match whole word
+        searchterm = searchterm.substring(0, len(searchterm)-1);
+        kwreg = new RegExp("("+wordsp+")(" + searchterm + ")("+wordsp+")", "gi");
+    }
     else //match word beginning
-        kwreg = new RegExp("(" + wordsp + ")(" + searchterm + ")", "gi");
+        kwreg = new RegExp("(" + wordsp + ")(" + searchterm + ")()", "gi");
     var twt = twt.data;
-    var alttxt = searchterm ? linkall((" "+twt.text+" ").replace(kwreg, "$1<font color="+highlight_color+">$2</font>")) : linkall(twt.text);
+    var alttxt = searchterm ? linkall((" "+twt.text+" ").replace(kwreg, "$1<font color="+highlight_color+">$2</font>$3")) : linkall(twt.text);
+    console.log(alttxt);
     return getdivstr(twt, alttxt);
 }
 
