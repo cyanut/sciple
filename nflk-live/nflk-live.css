@@ -32,9 +32,11 @@ p.text{
 }
 div#twtsearch{
     color: #424242;
-    font-size: 18px;
+    font-size: 20px;
     font-family: helvetica;
-    text-align: right;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 
 }
 
