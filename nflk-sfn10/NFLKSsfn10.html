@@ -1,0 +1,515 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style type="text/css">
+    
+    		body {
+        		font-family:"helvetica";
+        	}
+            a.twtlink{
+                color: #A40555;
+                text-decoration: none;
+            }
+            a.twtlink:hover{
+                text-decoration: none;
+            }
+            img.profile{
+                border: 1px solid #333;
+            }
+            div.text{
+                margin-left: 6px;
+                line-height: 14px;
+                overflow: hidden;
+            }
+            p.text{
+                margin-top: 5px;
+            }
+            div#twt-display{
+                position: relative;
+                padding: 8px;
+                height: 60px;
+                
+            }
+            div#twt-display table tr td{
+            	
+                font-size: 16px;
+                background: #C8C8C8;
+            }
+            div#twtsearch{
+                display: none;
+                text-align: right;
+                color: #666;
+                position: right;
+                font-size: 20px;
+            }
+            canvas#swirl{
+                margin-bottom: -24px;
+                position: left;
+                
+            }
+            input#twtsearchinput{
+                border: 2px solid;
+                border-color: #6464C9;
+                font-size: 28px; 
+                color: #666;
+                position: relative; right: 2px;
+            }
+            div#left-column{
+                position: relative;
+                width: 620px;
+            }
+            div#right-column{
+                margin-top: 10px;
+                text-align: left;
+                line-height: 20px;
+                font-size: 13px;
+                color: #666;
+            }
+        </style>
+    <script src="nflk.js"></script>
+    <title>NeuroFlocks: tweets from SfN2010</title>
+  </head>
+  <body dir="LTR" lang="en-CA">
+      <img src="NFLKS10_files/header_NFLKS_SFN10.png" border="0"
+      height="68" width="632" align = left>
+      <br />
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <div id="left-column"> <canvas align="center" id="swirl"
+                width="600" height="600" onclick="cclick(event)">
+                Unfortunately your browser does not support HTML5.... </canvas>
+
+            </div>
+          </td>
+          <td style="vertical-align:top">
+            <div id="right-column">
+			
+      <a href="http://www.neuinfo.org/"> <img src="http://neuinfo.org/images/registered_with_nif_button.jpg" alt="Registered with NIF" style="border:none;"> </a></div>
+              <br>
+              <div id="twt-display" height="20" ></div>
+              <br>
+              <div id="twtsearch"><b>Search:&nbsp; </b><input
+                  id="twtsearchinput" onkeyup="searchtwt(event)"
+                  size="17" type="text"></div>
+              <p><b>Type in the word you want to search for ... </b></p>
+              <p><b> + Space</b> = search for whole word<br>
+                <b> + Enter</b> = clear search field</p>
+              <p><b> + Click </b>on dots to show the content of the
+                tweet </p>
+              
+              <p> + <b>Green</b> = Tweets containing the word <br>
+                + <b>Blue</b> &nbsp;= Tweets with RT tag </p>
+              <br>
+              <p> Tweets follow a time gradient from the inside out:<br>
+                The spiral's center contains tweets from the beginning
+                of the meeting<br>
+                Tweets on the outside of the spiral were tweeted at the
+                end of the meeting </p>
+
+              <p><b>Quick tip:</b><br>
+                when looking for people, drop the @</p>
+              <br>
+
+
+           </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p> </p>
+    <table style=" text-align: left; width: 1100px;" border="0"
+      cellpadding="2" cellspacing="2">
+      <tbody>
+        <tr>
+          <td style=" vertical-align: top; background-color: rgb(204,
+            204, 255);"><br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table style=" text-align: left; width: 1100px;" border="0"
+      cellpadding="2" cellspacing="2">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;">
+            <h1>We are all superstitious...</h1>
+            <h4> ..and the SfN (society for neuroscience) meeting may be
+              the best place to share our superstitious rituals</h4>
+            <font ,="" color="#404040" size="3"> Whenever I begin a new
+              experiment or a new project, I do something stupid (...no,
+              I am not talking about messing up with dilutions or
+              experimental groups assignment ... that's routine) I am
+              talking about something even stupider:<br>
+              I open a random page of a random book, if the pagenumber
+              on the left page contains the number 3, then I'll have
+              good chances to publish my new project on a high impact
+              factor journal.
+              <p> </p>
+              <p> why? ...well, because I am a scientist, I believe in
+                magic, I believe in extrasensorial perceptions and I
+                believe in chance controlling my life... </p>
+              <p> ..and I know that I am not alone. Superstitious
+                behaviors are a fundamental part of scientists'
+                day-to-day job. Just ask your colleagues, you'll be
+                surprised by the plethora of irrational behaviors that
+                haunt the 'sharp-rigid-cold-mechanistic' brain of a
+                (neuro)scientist. You are not alone! The SfN meeting is
+                a good place to find traces of this dark side of our
+                rational minds. </p>
+              <p> if you type in the word 'aura' in the visualization
+                above, you'll see that<a
+href="http://www.newscientist.com/blogs/shortsharpscience/2010/11/auras.html#more"
+                  target="_blank"> the proof of existence of auras</a>
+                has generated quite a bit of excitement in the #sfn10
+                twitter community. The original tweet was re-tweeted
+                almost instantly creating a circular pattern on the
+                spiral (!hint: try to type in the word aura in the
+                SEARCH field above...doesn't look like an actual aura?
+                ... scary!). </p>
+              <p> So it is not surprising that when you look for the
+                first 19 numbers in the SfN10 tweets the only number
+                missing from this distribution is ... well, see the plot
+                here below! </p>
+            </font></td>
+        </tr>
+      </tbody>
+    </table>
+    <font ,="" color="#404040" size="3">
+      <p> <img src="NFLKS10_files/Number_distribution.png" border="0"
+          height="184" width="681"><br>
+      </p>
+    </font>
+    <table style=" text-align: left; width: 1100px;" border="0"
+      cellpadding="2" cellspacing="2">
+      <tbody>
+        <tr>
+          <td style=" vertical-align: top; background-color: rgb(204,
+            204, 255); height: 10px;"><big style="font-weight: bold;
+              color: rgb(102, 102, 102);"><big><span style="font-family:
+                  Helvetica,Arial,sans-serif;">DAYLY UPDATES : Tweet
+                  volume during the conference days</span></big></big><br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table style=" text-align: left; width: 1000px;" border="0"
+      cellpadding="2" cellspacing="4">
+      <tbody>
+        <tr>
+          <td colspan="2" rowspan="1" style="vertical-align: top;"><img
+              style=" width: 1101px; height: 563px;" alt=""
+              src="NFLKS10_files/Tweets_Volume.png"><br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; width: 590px; font-family:
+            Helvetica,Arial,sans-serif;">We collected (out in the wild)
+            some 3k tweets with the #SfN10 hashtag. The volume of tweets
+            per day changes considerably across days, with monday on the
+            top (936 tweets)!<br>
+            We then found the top words in these tweets. Glenn Close
+            seemed to generate consensus in the twitter crowd with 20%
+            of tweets tweeting (and RT) about Glenn!<br>
+            On the second day... again the tweet about the "spooky
+            aura"!!<br>
+          </td>
+          <td style="vertical-align: top; font-family:
+            Helvetica,Arial,sans-serif;">The volume of the selected
+            keywords changes considerably across days (with AURA showing
+            a big peak on day 2 at the expenses of "more" scientific
+            topics... BRAIN, TALK)<br>
+            The Glenn Close effect is definitevly&nbsp; more robust than
+            AURA, persisting on the second day and emerging again on
+            Thursday! ... glad to see that POSTER is pretty consistent
+            across days!<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table style="text-align: left; width: 1100px; color: rgb(102, 102,
+      102);" border="0" cellpadding="2" cellspacing="2">
+      <tbody>
+        <tr>
+          <td style=" vertical-align: top; background-color: rgb(204,
+            204, 255);"><big style="font-weight: bold;"><big><big><span
+                    style="font-family: Helvetica,Arial,sans-serif;">SUMMARY
+
+
+
+
+
+
+
+
+
+
+                    1 : Who tweets most?</span></big></big></big><br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <span style="font-weight: bold;"><br>
+    </span>
+    <table style="text-align: left; width: 1100px; height: 567px;"
+      border="0" cellpadding="2" cellspacing="2">
+      <tbody>
+        <tr>
+          <td style=" vertical-align: top; width: 500px;"><img style="
+              width: 486px; height: 558px;" alt=""
+              src="NFLKS10_files/Top_Twitters.png"><br>
+          </td>
+          <td style=" vertical-align: top; font-family:
+            Helvetica,Arial,sans-serif;">
+            <h2><br>
+            </h2>
+            <h2><big><big><big><font><big><big><big><big><big><big><font
+                                    ,="" color="#404040" size="3"><big><big><big><br>
+                                        </big></big></big></font></big></big></big></big></big></big></font></big></big></big></h2>
+            .... well the top one [Neurosci2010] was somehow expected!<br>
+            <br>
+            Happy to see that one of our interviewee on Sciple.org
+            [@jsnsndr] is in the top 20!<br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br style="font-style: italic;">
+            <div style="text-align: left;"><small><span
+                  style="font-style: italic;">Please note that only the
+                  top 20 twitterers (<big style="font-weight: bold;">out
+                    of 633</big>) were plotted here</span></small><br>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table style="text-align: left; width: 1100px; color: rgb(102, 102,
+      102);" border="0" cellpadding="2" cellspacing="2">
+      <tbody>
+        <tr>
+          <td style=" vertical-align: top; background-color: rgb(204,
+            204, 255);"><big style="font-weight: bold;"><big><big><span
+                    style="font-family: Helvetica,Arial,sans-serif;">SUMMARY
+
+
+
+
+
+
+
+
+
+
+                    2 : NeuroFlocks<br>
+                  </span></big></big></big></td>
+        </tr>
+      </tbody>
+    </table>
+    <table style=" text-align: left; width: 1100px;" border="0"
+      cellpadding="2" cellspacing="2">
+      <tbody>
+        <tr>
+          <td style=" vertical-align: top; width: 500px;"><img style="
+              width: 500px; height: 604px;" alt=""
+              src="NFLKS10_files/FLocks.png"><br>
+          </td>
+          <td style="vertical-align: top;">
+            <h2><big><big>NeuroFlocks!</big></big></h2>
+            <br>
+            This is great! Here are the NeuroFlocks themselves!<br>
+            <br>
+            This graph illustrates how the twitterers flock around
+            central topics.<br>
+            <br>
+            Can you spot the emerging "trendy" topic.... Optogenetics<br>
+            <br>
+            ... and look how many companies use twitter to attract
+            twitterers to their booths!<br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div style="text-align: right;"><span style="font-style:
+                italic; color: rgb(102, 102, 102);">we'll soon make the
+                pdf available, so you can </span><span
+                style="font-style: italic; color: rgb(102, 102, 102);">easily
+
+
+
+
+
+
+
+
+
+
+              </span><span style="font-style: italic; color: rgb(102,
+                102, 102);">navigate the graph !</span><br>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table style="text-align: left; width: 1100px; color: rgb(102, 102,
+      102);" border="0" cellpadding="2" cellspacing="2">
+      <tbody>
+        <tr>
+          <td style=" vertical-align: top; background-color: rgb(204,
+            204, 255);"><big style="font-weight: bold;"><big><big><span
+                    style="font-family: Helvetica,Arial,sans-serif;">SUMMARY
+
+
+
+
+
+
+
+
+
+
+                    3: Conversations<br>
+                  </span></big></big></big></td>
+        </tr>
+      </tbody>
+    </table>
+    <table style=" text-align: left; width: 1100px;" border="0"
+      cellpadding="2" cellspacing="2">
+      <tbody>
+        <tr style="font-family: Helvetica,Arial,sans-serif;"
+          align="center">
+          <td style="vertical-align: top;"><img style=" width: 786px;
+              height: 577px;" alt=""
+              src="NFLKS10_files/Overall_Conversations.png"><br>
+          </td>
+        </tr>
+        <tr style="font-family: Helvetica,Arial,sans-serif;">
+          <td style="vertical-align: top;">This graph was generated from
+            all tweets containing RT or twitter names in the tweets
+            text. It depicts the overall converstions going on during
+            the conference.<br>
+            Few major nodes were detected (namely Dana FOundation, Nida
+            News and NeuroSci2010).<br>
+            In <span style="font-weight: bold;">panel A</span> you'll
+            see the impressive excitement ( Twitterers ReTweeting the
+            "spooky" tweet) that the "spooky aura-synesthesia" tweet by
+            @NewScientist generated on Sunday.<br>
+            <span style="font-weight: bold;">Panel B</span> shows the
+            "core" of the conversation with some important nodes
+            (intense RT between these twitterers).<br>
+            Detailed analysis are on the way to extract more
+            "scientific" information ...<br>
+            <br>
+            <div style="text-align: right;"><span style="font-style:
+                italic; color: rgb(102, 102, 102);">we'll soon make the
+                pdf available, so you can navigate the whole graph and
+                find yourself entangled in the edges of this intense
+                conversation!</span><br>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <font ,="" color="#404040" size="3">
+      <p><br>
+      </p>
+      <p><br>
+      </p>
+          <p> </p>
+    <table style=" text-align: left; width: 1100px;" border="0"
+      cellpadding="2" cellspacing="2">
+      <tbody>
+        <tr>
+          <td style=" vertical-align: top; background-color: rgb(204,
+            204, 255);"><br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+      <p> <a href="http://twitter.com/share"
+          class="twitter-share-button" data-count="horizontal"
+          data-via="ScipleNeuro">Tweet</a>
+        <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+      </p>
+      <br>
+      Developed by <b>Leonardo Restivo </b> &amp; <b>Chen Yan</b> <font
+        size="3"><br>
+        <i> and the <a
+      href="http://sciple.org/about/" target="_blank">SciPle.org team </a>[Valentina Mercaldo : Adelaide Yiu :
+          Anne Wheeler : Paul Frankland]</i> </font>
+      <p> </p>
+    </font> Read interviews with neuroscientists on <a
+      href="http://sciple.org/" target="_blank">SciPle.org</a>
+    <p> <a href="http://sciple.org/" target="_blank"><img
+          src="NFLKS10_files/SciPle_Home.png" border="0" height="150"
+          width="795"></a> </p>
+    <script language="javascript">
+    init();
+    p = 200;
+    var loading_color = "rgba(100, 100, 100, 0.5)";
+    function drawloading(){
+       
+        clear();
+        ctx.fillStyle = loading_color;
+        loadingy = center.y - 60;
+        ctx.font = "11pt Arial";
+        ctx.textAlign = "center";
+        ctx.fillText("Loading ...", center.x + 8, loadingy);
+        ctx.font = "11pt Arial";
+        ctx.fillText("[", center.x - 116, loadingy + 20);
+        ctx.fillText("]", center.x + 116, loadingy + 20);
+        ctx.fillText("<=>", center.x - 100 + Math.abs(p%400-200), loadingy +20);
+        p += 3;
+    }
+    loadid = setInterval("drawloading()", 50);
+</script>
+    <script language="javascript" src="sfn10.js">
+</script>
+    <script language="javascript">
+    function rndnum(n){
+        return Math.floor(Math.random()*n);
+    }
+    clearInterval(loadid);
+    document.getElementById("twtsearch").style.display="block";
+    clear();
+    for (i=0; i<twtlist.length; i++)
+        twtlist[i].color = "rgba("+String(rndnum(255))+","+String(rndnum(255))+","+String(rndnum(255))+",0.8)";
+
+    select(twtlist.length - 1);
+    for (i=0; i<twtlist.length; i++)
+        twtlist[i].color = getdefcolor(i);
+</script>
+  </body>
+</html>
