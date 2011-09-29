@@ -1,13 +1,13 @@
 
 var search_intvl = 12000;
 var disp_intvl = 1000;
-var search_term = "#fail";
+var search_term = "#sfn11";
 var twtblock = "twtblock";
 var maxtwt = -1;
 var maxq = 1000;
 var baseurl = "http://search.twitter.com/search.json?callback=enqarr&result_type=recent&q=";
 var ubase;
-
+var rpp=50; //#of tweets per retrival
 var q = new Array(maxq);
 var qhead = 0;
 var qtail = 0;
@@ -105,7 +105,7 @@ function padtime(s){
 function getJSON(url){
     url += "&since_id=" + sinceid;
     url += "&cache-ctl=" + (new Date()).getTime();
-    url += "&result_type=recent";
+    url += "&result_type=recent&rpp=" + rpp.toString();
     tempScrpt = document.createElement("script");
     tempScrpt.setAttribute("type", "text/javascript");
     tempScrpt.setAttribute("language", "JavaScript");
