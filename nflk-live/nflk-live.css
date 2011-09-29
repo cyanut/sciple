@@ -32,7 +32,7 @@ p.text{
 }
 div#twtsearch{
     color: #424242;
-    font-size: 20px;
+    font-size: 16px;
     font-family: helvetica;
     margin-left: auto;
     margin-right: auto;
@@ -42,9 +42,10 @@ div#twtsearch{
 
 div#twtqueue{
     float: left;
-    font: 24px helvetica bold;
+    font: 20px helvetica bold;
     color: #777;
     vertical-align: middle;
+    width: 220px;
 
 }
 div#twtqueue span#term{
@@ -56,7 +57,7 @@ canvas#swirl{
 input#twtsearchinput{
     border: 4px solid;
     border-color: #6464C9;
-    font-size: 28px; 
+    font-size: 22px; 
     color: #666;
     position: relative; 
 }
@@ -120,5 +121,6 @@ div.twt img.profile
 div#twtblock{
     height:550;
     width: 100%;
+    border-top: 5px solid white;
     overflow-y: auto;
 }
