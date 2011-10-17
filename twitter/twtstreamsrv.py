@@ -8,7 +8,7 @@ import time
 from urllib.parse import quote as urlquote
 
 #keywords = "neuroscience, neuron, brain"
-keywords = "#fail"
+keywords = "#sfn11"
 uname = b"scipleauto1"
 upass = b"scipleftw"
 
@@ -16,6 +16,7 @@ FILTER_URL = "http://stream.twitter.com/1/statuses/filter.json?track="
 conn_pool = []
 srvskt = None
 sktfile = "/tmp/twtstream.skt"
+jsonlog = open("sfn11.json", "a")
 
 def init_socket():
     srvskt = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
@@ -60,11 +61,16 @@ def main_loop():
         if buff[-2:] == b"\r\n":
             json = buff
             process_json(json)
+            log_json(json)
             buff = b""
 
 def process_json(j):
     broadcast(j)
     #print(fmtjson(j))
+
+def log_json(json):
+    jsonlog.write(json)
+    jsonlog.flush()
 
 def broadcast(s):
     p = 0

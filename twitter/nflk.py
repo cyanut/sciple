@@ -57,6 +57,10 @@ class NeuTweet:
                 re.sub("<<([a-z0-9A-Z._\-]+)>>", self._repl, fmt))        
     
     @staticmethod
+    def search2stat(searchobj):
+        pass
+
+    @staticmethod
     def get_catagory(text, worddic=nflkdata.worddic):
         '''Catagorize the tweet and save the result in tweet.catagory.
         Return None.
