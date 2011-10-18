@@ -151,14 +151,18 @@ class NeuFlock:
         '''
 
         self.auth()
+        count = 0
         for tweet in self.twapi.home_timeline(count=200, since_id=since):
-            self.add(NeuTweet(tweet))
+            count += self.add(NeuTweet(tweet))
+        return count
      
     def update_query(self, query, since=1):
         self.auth()
+        count = 0
         for tweet in self.twapi.search(q=query, rpp=100, since_id=since):
             NeuTweet.search2stat(tweet)
-            self.add(NeuTweet(tweet))
+            count += self.add(NeuTweet(tweet))
+        return count
     
 
     def update_users(self, userlist=nflkdata.userlist, since=1):
@@ -166,13 +170,15 @@ class NeuFlock:
         If userlist is long, result may be truncated due to rate limit.
         '''
         self.auth()
+        count = 0
         for user in userlist:
             f = self.twapi.user_timeline(id=user, since_id=since)
             for twt in f:
                 try:
-                    self.add(NeuTweet(twt))
+                    count += self.add(NeuTweet(twt))
                 except TweepError:
                     pass
+        return count 
 
     def add(self, tweet):
         '''Add a tweet to self.tweets.
@@ -183,7 +189,9 @@ class NeuFlock:
             self._twtids.add(tweet.id)
             if tweet.id > self.maxsince:
                 self.maxsince = tweet.id
-    
+            return 1
+        return 0
+
     def dump(self, fname):
         '''Dump all the tweets in self.tweets, catagory info excluded.
         fname: the file name of the dump.
@@ -199,9 +207,11 @@ class NeuFlock:
         '''
         f = open(fname, "rb")
         temptweets = pickle.load(f)
+        count = 0
         for twt in temptweets:
-            self.add(NeuTweet(twt))
+            count += self.add(NeuTweet(twt))
         f.close()
+        return count
          
     def top_rts(self, ntop=None, catalist=list(range(1, NeuTweet.ncata+1))):
         '''Return most retweeted tweets in self.tweets. 
