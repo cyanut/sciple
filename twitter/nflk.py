@@ -10,6 +10,11 @@ try:
 except ImportError:
     import pickle
 
+class DummyClass:
+    def __init__(self):
+        pass
+
+
 class NeuTweet:
     '''Represent a single catagorized tweet object.'''
     
@@ -58,7 +63,11 @@ class NeuTweet:
     
     @staticmethod
     def search2stat(searchobj):
-        pass
+        setattr(searchobj, "user", DummyClass())
+        setattr(searchobj.user, "name", searchobj.from_user)
+        setattr(searchobj.user, "profile_image_url", searchobj.profile_image_url)
+        setattr(searchobj.user, "url", "http://twitter.com/"+searchobj.from_user)
+        setattr(searchobj, "retweet_count", -1)
 
     @staticmethod
     def get_catagory(text, worddic=nflkdata.worddic):
@@ -144,12 +153,13 @@ class NeuFlock:
         self.auth()
         for tweet in self.twapi.home_timeline(count=200, since_id=since):
             self.add(NeuTweet(tweet))
-    ''' 
+     
     def update_query(self, query, since=1):
         self.auth()
         for tweet in self.twapi.search(q=query, rpp=100, since_id=since):
+            NeuTweet.search2stat(tweet)
             self.add(NeuTweet(tweet))
-    '''
+    
 
     def update_users(self, userlist=nflkdata.userlist, since=1):
         '''retrieve the tweets from each user in the userlist.
