@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<html> 
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+        <title>Live tweets from SfN 2011</title>
+        <meta name = "description" content = "Tweets from Sfn 2011"/>
+        <meta name = "keywords" content = "Sfn 2011, tweets, neuroscience 2011, neuroflocks, meeting, conference, washington"/>
+        <link rel="stylesheet" type="text/css" href="nflk-live.css" />
+        <script src="nflk-live-tweet.js"></script>
+        <script src="nflk-live-spiral.js"></script>
+    </head> 
+    <body lang="en-CA" dir="LTR">
+    <div id="wrapper">
+    	<a href="http://sciple.org/" target="_blank">
+        <img class="header" src="Header_16OCT.png"></a>
+                    <div id="left-column">
+                        <div id="twt-display"></div><br />
+                        <canvas align="center" id="swirl" height=600 width=600 onclick="cclick(event)">
+                        Unfortunately your browser does not support HTML5.... 
+                        </canvas>
+                        <div id="instruction">click dots to display tweet</div>
+                    </div>
+                    <div id="right-column">
+		
+        <table>
+            <tr>
+            
+                <td>
+        <div id="twtqueue"><span id="term"><b><script>document.write(search_term);</script></b></span>
+                            <input type="button" id="pausebutton" value="Pause" onclick="toggle_pause();"/>
+                            <input type="button" id="clear" value="clear" onclick="cleartwts();"/>
+                            <br /><i><span id="counter">0</span> tweets in queue...</i></div>
+                        </td>
+                        <td>
+                            <div id="twtsearch"><div id="twtsearchprompt"> Search text in tweets </div><input type="text" id="twtsearchinput" onkeyup="searchtwt(event)" size="9"/></div>
+                       <div id="twitter_link"><a href ="http://twitter.com" target ="_blank">connect to twitter</a></div>
+                       </td>
+                        
+                    </tr>
+                    
+                    </table>
+                    
+
+                    <div id="twtblock"></div>
+                    
+                    </div>
+                    <br>
+        <p> 
+       
+            <br/> 
+            
+            </font> 
+            <p> 
+
+            </p> 
+    <table style=" text-align: left; width: 1150px;" border="0"
+      cellpadding="2" cellspacing="2">
+      <tbody ">
+        <tr>
+          <td style=" vertical-align: top; background-color:#7171b8; height: 10px;padding: 15px"><big style="font-weight: bold; color: white;"><big><span style="font-family:
+                  Helvetica,Arial,sans-serif;">DAILY UPDATES : ... waiting for SfN 2011</span></big></big><br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+        </font>
+        <br>
+        <p>
+        <b>
+        Please visit <a href="http://sciple.org/neuroflocks/NFLKSsfn10.html" target="_blank"> Neuroflocks:2010 </a>[San Diego] to see examples of daily posts and overall summary of the tweets from the past conference
+        </b>
+        </p>
+        <br>
+        <p >
+        <b></b><br>
+		<p>
+		<a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="scipleNeuro">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+		</p>
+        </p>
+<div id="footer"> // Developed by the <a href="http://sciple.org/about" target="_blank"><b>SciPle.org team</i> </b></a>  // Read interviews with neuroscientists on <a href="http://sciple.org/" target="_blank"><b>Sciple.org</b></a> //</div>
+    </div> 
+    </body> 
+</html>
+<script language="javascript">
+    init();
+    toggle_pause();
+</script>
