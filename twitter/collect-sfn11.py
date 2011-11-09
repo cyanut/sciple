@@ -16,10 +16,15 @@ if __name__ == "__main__":
         
 
         #retrieve new tweets, every 30 seconds
-        n = f.update_query("#sfn11", since=maxsince)
+        try:
+            n = f.update_query("#sfn11", since=maxsince)
+        except:
+            time.sleep(30)
+            continue
         for t in f.tweets[-n:]:
             print(t.tostr("<<id>>\t<<created_at>>\t<<user.name>>\t<<catagory>>\t<<text>>"))
-        maxsince = f.maxsince
+        maxsince = f.maxsince + 1
+        print ".",#str(n) + " :: " + datetime.now().strftime("%m-%d_%H.%M.%S") 
         time.sleep(30)
         count += 1
          
