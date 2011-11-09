@@ -22,7 +22,6 @@ class SfnListener(twtstream.StreamListener):
         super(SfnListener, self).on_data(data)
         if self.jsonlog:
             self.jsonlog.write(data)
-            self.jsonlog.write("\n")
             self.jsonlog.flush()
 
     def on_status(self, status):

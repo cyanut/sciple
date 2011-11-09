@@ -4,6 +4,8 @@ import tweepy
 import nflkdata
 import re
 import sys
+import json
+import datetime
 from xml.sax.saxutils import unescape as xmlunescape
 try:
     import cPickle as pickle
@@ -31,6 +33,11 @@ class NeuTweet:
 
     def __init__(self, status):
         self.status = status
+        if isinstance(self.status, tweepy.models["status"]):
+            NeuTweet.stat2search(self.status)
+        elif isinstance(self.status, tweepy.models["search_result"]):
+            NeuTweet.search2stat(self.status)
+
         #contain the catagory of the tweet
         self.catagory = NeuTweet.get_catagory(self.text)
 
@@ -49,6 +56,29 @@ class NeuTweet:
             return ""
         #return str(res)
         return unicode(res)
+    
+    @staticmethod
+    def _todic(m):
+        try:
+            json.dumps(m)
+            return m 
+        except TypeError:
+            try:
+                objdic = vars(m)
+            except TypeError:
+                if isinstance(m, datetime.datetime):
+                    return m.strftime("%a, %d %b %Y %X ") + "+0000"
+                return m.__str__()
+            for k, v in objdic.items():
+                objdic[k] = NeuTweet._todic(v)
+            return objdic
+
+
+    def tojson(self):
+
+        return json.dumps(NeuTweet._todic(self.status), sort_keys=True, indent=4)
+
+
     def tostr(self, fmt=default_format):
         '''Format the tweet to string according to a template.
         fmt: the template. Fields are enclosed by << and >>. For example, \
@@ -68,6 +98,17 @@ class NeuTweet:
         setattr(searchobj.user, "profile_image_url", searchobj.profile_image_url)
         setattr(searchobj.user, "url", "http://twitter.com/"+searchobj.from_user)
         setattr(searchobj, "retweet_count", -1)
+    
+    @staticmethod
+    def stat2search(statusobj):
+        try:
+            setattr(statusobj, "from_user", statusobj.user.screen_name)
+        except AttributeError:
+            setattr(statusobj, "from_user", statusobj.user.name)
+        setattr(statusobj, "profile_image_url", \
+                statusobj.user.profile_image_url)
+        
+
 
     @staticmethod
     def get_catagory(text, worddic=nflkdata.worddic):
@@ -160,7 +201,6 @@ class NeuFlock:
         self.auth()
         count = 0
         for tweet in self.twapi.search(q=query, rpp=100, since_id=since):
-            NeuTweet.search2stat(tweet)
             count += self.add(NeuTweet(tweet))
         return count
     
@@ -184,6 +224,8 @@ class NeuFlock:
         '''Add a tweet to self.tweets.
         tweet: a tweepy.model.Status object.
         '''
+        if not isinstance(tweet, NeuTweet):
+            tweet = NeuTweet(tweet)
         if tweet.id not in self._twtids:
             self.tweets.append(tweet)
             self._twtids.add(tweet.id)
