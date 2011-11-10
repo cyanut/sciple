@@ -11,7 +11,7 @@ var l = 20; //total number of tweets
 var inctwtr = 1/20; //node radius increase per tweet
 var minalpha = 0.5;
 var maxalpha = 0.5;
-var margin = 20; //px
+var margin = 200; //px
 var def_color = "rgba(100,100,100,0.1)"; //default color
 var select_color = "rgba(254, 54, 20, 1)"; //selected node color
 var rt_color = "rgba(104, 79, 248, 1)"; //retweet color on search
@@ -209,6 +209,8 @@ function recalctwtcoord(){
 
         twtlist[i].x = x;
         twtlist[i].y = y;
+        twtlist[i].coord.x = x;
+        twtlist[i].coord.y = y;
         twtlist[i].r = r;
         twtlist[i].a = a;
         twtlist[i].rdist = rdist;
@@ -254,7 +256,8 @@ function getneartwt(mscrd){
     neartwt = -1;
     mindist = 99999999;
     for (var i=0; i<twtlist.length; i++){
-        d = sqdist(twtlist[i].coord, mscrd);
+
+        d = sqdist(twtlist[i], mscrd);
         if (d < mindist){
             neartwt = i;
             mindist = d;
@@ -270,6 +273,7 @@ function show_selected_twt(){
 
 //select tweets near cursor position when clicked
 function cclick(e){
+
     select(getneartwt(getmscoord(e)));
 }
 
