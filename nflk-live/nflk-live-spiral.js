@@ -4,13 +4,14 @@ function coord(x, y){
 }
 var center = new coord(300, 300); //center of the swirl
 //var npround = 9; //number of tweets per round
-var inner_r = 20; //inner radius of the swirl
+var inner_r = 10; //inner radius of the swirl
 //var ddist = 1;  //radius increase per tweet
 var basetwtr = 5; //minimum radius of tweet node
 var l = 20; //total number of tweets
 var inctwtr = 1/20; //node radius increase per tweet
 var minalpha = 0.5;
 var maxalpha = 0.5;
+var margin = 20; //px
 var def_color = "rgba(100,100,100,0.1)"; //default color
 var select_color = "rgba(254, 54, 20, 1)"; //selected node color
 var rt_color = "rgba(104, 79, 248, 1)"; //retweet color on search
@@ -54,8 +55,8 @@ function init(){
 
 
 function getdefcolor(i){
-        alpha = minalpha + i / l * (maxalpha - minalpha);
-        return def_color.replace(/,[0-9. ]+\)/, ","+alpha.toFixed(2)+")");
+    alpha = minalpha + i / l * (maxalpha - minalpha);
+    return def_color.replace(/,[0-9. ]+\)/, ","+alpha.toFixed(2)+")");
 }
 
 function drawtweet(twt){
@@ -66,12 +67,13 @@ function drawtweet(twt){
 }
 
 function swirladdtweet(twtdata){
+    //extract words for indexing
     var i = twtlist.length;
 
     var r = basetwtr + i * inctwtr;
     var a = 0;
     var rdist = inner_r;
-    
+
     if (i > 0){
         //radial distance in polar coordinate
         rdist = twtlist[i-1].rdist + drdist; 
@@ -85,8 +87,16 @@ function swirladdtweet(twtdata){
     var y = rdist*Math.sin(a)+center.y;
 
     twtlist[i] = new tweet(x,y,r,a,rdist,twtdata,getdefcolor(i));
+    
+    if (x < margin || x > width - margin
+            || y < margin || y > width - margin){
+        inner_r *= 0.8;
+        basetwtr *= 0.8;
+        inctwtr /= 2;
+        recalctwtcoord();
+        redraw();
+    }
 
-    //extract words for indexing
     var wl = twtdata.text.toLowerCase().split(wordspc);
     for (var j=0; j<wl.length; j++){
         if (wl[j] in wordset)
@@ -174,6 +184,38 @@ function clear(){
     ctx.clearRect(0, 0, width, height);
 }
 
+function redraw(){
+    ctx.clearRect(0, 0, width, height);
+    draw();
+}
+
+function recalctwtcoord(){
+    for (i=0; i<twtlist.length; i++){
+        var r = basetwtr + i * inctwtr;
+        var a = 0;
+        var rdist = inner_r;
+
+        if (i > 0){
+            //radial distance in polar coordinate
+            rdist = twtlist[i-1].rdist + drdist; 
+            //angle in polar coordinate
+            var da = Math.acos((twtlist[i-1].rdist*twtlist[i-1].rdist+rdist*rdist-(twtlist[i-1].r+r)*(twtlist[i-1].r+r))/(2*twtlist[i-1].rdist*rdist));
+            a = twtlist[i-1].a + da;
+            //estimate radial increase, so that it won't overlap with next round
+            drdist = inctwtr + r*da/Math.PI; 
+        } 
+        var x = rdist*Math.cos(a)+center.x;
+        var y = rdist*Math.sin(a)+center.y;
+
+        twtlist[i].x = x;
+        twtlist[i].y = y;
+        twtlist[i].r = r;
+        twtlist[i].a = a;
+        twtlist[i].rdist = rdist;
+    }
+}
+
+
 //grab cursor coordination in coord of canvas
 function getmscoord(e){
     var x;
@@ -236,8 +278,7 @@ function select(ntwt){
     if (ntwt == -1)
         return;
     twt_select = ntwt; 
-    ctx.clearRect(0, 0, width, height);
-    draw();
+    redraw();
     show_selected_twt();
 }
 
@@ -253,7 +294,7 @@ function scantwt(searchterm){
             //find latest tweet in search results
             if (wordset[term][i] > latest_search)
                 latest_search = wordset[term][i];
-                    twt.color = is_rt(twt) ? rt_color : hit_color;
+            twt.color = is_rt(twt) ? rt_color : hit_color;
             modlist[modlist.length] = wordset[term][i];
         }
     }
@@ -266,8 +307,8 @@ function scantwt(searchterm){
         for (term in wordset)
             if (term && searchterm && term.length >= searchterm.length && 
                     term.substring(0, searchterm.length) == searchterm){
-                searchwordterm(term);
-            }
+                        searchwordterm(term);
+                    }
     }
 }
 

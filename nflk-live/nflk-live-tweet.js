@@ -1,6 +1,6 @@
 
 var search_intvl = 12000;
-var disp_intvl = 1000;
+var disp_intvl = 100;
 var search_term = "#sfn11";
 var twtblock = "twtblock";
 var maxtwt = -1;

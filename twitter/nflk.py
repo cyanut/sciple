@@ -263,6 +263,11 @@ class NeuFlock:
             count += self.add(NeuTweet(twt))
         f.close()
         return count
+
+    def tojson(self, ismini=True):
+        return "".join(["[", \
+                         ",".join([x.tojson() for x in self.tweets]), \
+                         "]"])
          
     def top_rts(self, ntop=None, catalist=list(range(1, NeuTweet.ncata+1))):
         '''Return most retweeted tweets in self.tweets. 
