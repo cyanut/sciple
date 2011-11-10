@@ -2,10 +2,14 @@
 
 import nflk
 import time
+import urllib
 from datetime import datetime
 import tweepy.streaming as twtstream
 
 dumprefix = "streaming-twts/"
+default_posturl = "http://127.0.0.1:8080/tweet-buff.php"
+postargs = ("passwd", "tweetjson")
+postpass = "SciPleFTW"
 
 class SfnListener(twtstream.StreamListener):
 
@@ -33,14 +37,20 @@ class SfnListener(twtstream.StreamListener):
             self.dump_timestamp = t
             fname = dumprefix + datetime.now().strftime("%Y-%m-%d_%H-%M-%S")+".twt"
             self.nflk.dump(fname)
-            self.nflk.tweets = []
+            
+            postdata = ",".join([x.tojson() for x in self.nflk.tweets])
+            postdata = "".join("{", postdata, "}")
+            params = urllib.urlencode(dict(zip(postargs, \
+                                              (postpass, postdata))))
+            f = urllib.urlopen(default_posturl, params)
+            if f.read():
+                self.nflk.tweets = []
 
 
 
 
 if __name__ == "__main__":
     
-    #create a NeuFlock instance
     f = nflk.NeuFlock()
     fjson = open(dumprefix+"sfntwts.json", 'a')
     mysfnlistener = SfnListener(nflk=f, json=fjson)

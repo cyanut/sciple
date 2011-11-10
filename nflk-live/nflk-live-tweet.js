@@ -40,7 +40,7 @@ function pauseme(){
     clearInterval(checkid);
 }
 function start(){
-    sinceid = 0; 
+    //sinceid = 0; 
     ubase = baseurl + escape(search_term);
     getJSON(ubase);
     checkid = setInterval(function(){ addtweet(twtblock); }, disp_intvl);
@@ -117,6 +117,7 @@ function getJSON(url){
 function enqarr(arrjson){
     arrjson.results.sort(sorttweet);
     for (var i=0; i<arrjson.results.length; i++){
+        arrjson.results[i].id = parseInt(arrjson.results[i].id_str);
         if (arrjson.results[i] != "undefined" && arrjson.results[i].id > sinceid){
             enq(arrjson.results[i]);
             sinceid = arrjson.results[i].id;
@@ -124,7 +125,7 @@ function enqarr(arrjson){
             cntupdate();
         }
     }
-    document.getElementsByTagName("head")[0].removeChild(tempScrpt);
+    //document.getElementsByTagName("head")[0].removeChild(tempScrpt);
 }
 
 function sorttweet(a, b){

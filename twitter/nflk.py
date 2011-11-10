@@ -27,6 +27,8 @@ class NeuTweet:
     neu_threshold = 1.01
     norms = None
     ncata = 7
+    mini_arglist = ["from_user", "id", "id_str", "profile_image_url", \
+                    "created_at", "source", "text"]
     default_format = "<<id>>\t<<user.name>>\t<<user.profile_image_url>>\t\
                       <<user.url>>\t<<created_at>>\t<<source>>\t\
                       <<catagory>>\t<<retweet_count>>\t<<text>>"
@@ -74,9 +76,16 @@ class NeuTweet:
             return objdic
 
 
-    def tojson(self):
+    def tojson(self, ismini=True):
+        if ismini:
+            minijsdic = {}
+            for arg in NeuTweet.mini_arglist:
+                minijsdic[arg] = getattr(self.status, arg)
+                if isinstance(minijsdic[arg], datetime.datetime):
+                    minijsdic[arg] = minijsdic[arg].strftime("%a, %d %b %Y %X ") + "+0000"
 
-        return json.dumps(NeuTweet._todic(self.status), sort_keys=True, indent=4)
+            return json.dumps(minijsdic)
+        return json.dumps(NeuTweet._todic(self.status))
 
 
     def tostr(self, fmt=default_format):
