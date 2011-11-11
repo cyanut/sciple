@@ -3,7 +3,7 @@ var search_intvl = 12000;
 var disp_intvl = 100;
 var search_term = "#sfn11";
 var twtblock = "twtblock";
-var maxtwt = 100;
+var maxtwt = 80;
 var maxq = 10000;
 var baseurl = "http://search.twitter.com/search.json?callback=enqarr&result_type=recent&q=";
 var ubase;
@@ -44,7 +44,8 @@ function start(){
     ubase = baseurl + escape(search_term);
     getJSON(ubase);
     while (lenq() > maxtwt)
-       addtweet(twtblock);
+        addtweet(twtblock);
+
     maxtwt = -1;
     checkid = setInterval(function(){ addtweet(twtblock); }, disp_intvl);
     searchid = setInterval(function(){ getJSON(ubase) }, search_intvl);
@@ -63,7 +64,7 @@ function addtweet(id){
         var twt = deq();
         cntupdate();
         var divstr = getdivstr(twt);
-        if (maxtwt < 0 || lenq() < maxtwt)
+        if (maxtwt < 0 || lenq() < maxtwt * 2)
             twtblock.innerHTML = divstr + twtblock.innerHTML;
         swirladdtweet(twt);
         if (maxtwt > 0 && twtblock.childNodes.length > maxtwt){

@@ -81,8 +81,31 @@
     </div> 
     </body> 
 </html>
+    <script language="javascript">
+    init();
+    p = 200;
+    var loading_color = "rgba(100, 100, 100, 0.5)";
+    function drawloading(){
+       
+        clear();
+        ctx.fillStyle = loading_color;
+        loadingy = center.y - 60;
+        ctx.font = "11pt Arial";
+        ctx.textAlign = "center";
+        ctx.fillText("Loading ...", center.x + 8, loadingy);
+        ctx.font = "11pt Arial";
+        ctx.fillText("[", center.x - 116, loadingy + 20);
+        ctx.fillText("]", center.x + 116, loadingy + 20);
+        ctx.fillText("<=>", center.x - 100 + Math.abs(p%400-200), loadingy +20);
+        p += 3;
+    }
+    loadid = setInterval("drawloading()", 50);
+</script>
+
         <script src="http://cyan.homelinux.org:8010/tweet-buff.php"></script>
 <script language="javascript">
+    clearInterval(loadid);
+    clear();
     init();
     toggle_pause();
 </script>
