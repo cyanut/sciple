@@ -11,7 +11,7 @@ var l = 20; //total number of tweets
 var inctwtr = 1/20; //node radius increase per tweet
 var minalpha = 0.5;
 var maxalpha = 0.5;
-var margin = 200; //px
+var margin = 20; //px
 var def_color = "rgba(100,100,100,0.1)"; //default color
 var select_color = "rgba(254, 54, 20, 1)"; //selected node color
 var rt_color = "rgba(104, 79, 248, 1)"; //retweet color on search
@@ -96,7 +96,7 @@ function swirladdtweet(twtdata){
         recalctwtcoord();
         redraw();
     }
-
+/*
     var wl = twtdata.text.toLowerCase().split(wordspc);
     for (var j=0; j<wl.length; j++){
         if (wl[j] in wordset)
@@ -106,10 +106,12 @@ function swirladdtweet(twtdata){
             wordset[wl[j]][0] = i;
         }
     }
-
+*/
     //select latest tweet
     twt_select = i;
-    scantwt(searchterm);
+    //scantwt(searchterm);
+    if (twtmatch(searchterm, twtlist[i]))
+        twtlist[i].color = is_rt(twtlist[i]) ? rt_color : hit_color; 
     drawtweet(twtlist[i]);
 }
 
@@ -118,14 +120,13 @@ function swirladdtweet(twtdata){
 //format twt.data for display
 function fmttwt(twt){
     if (is_whole_word){//if search for whole word, match whole word
-        searchterm = searchterm.substring(0, len(searchterm)-1);
+        //searchterm = searchterm.substring(0, searchterm.length-1);
         kwreg = new RegExp("("+wordsp+")(" + searchterm + ")("+wordsp+")", "gi");
     }
     else //match word beginning
         kwreg = new RegExp("(" + wordsp + ")(" + searchterm + ")()", "gi");
     var twt = twt.data;
     var alttxt = searchterm ? linkall((" "+twt.text+" ").replace(kwreg, "$1<font color="+highlight_color+">$2</font>$3")) : linkall(twt.text);
-    console.log(alttxt);
     return getdivstr(twt, alttxt);
 }
 
@@ -291,7 +292,29 @@ function is_rt(twt){
 }
 
 
+function twtmatch(searchterm, twt){
+    strre = wordsp + searchterm;
+    if (is_whole_word) strre += wordsp;
+
+    searchre = new RegExp(strre);
+    return searchre.test(twt.data.text);
+}
+
+
 function scantwt(searchterm){
+    for (var i=0; i<twtlist.length; i++){
+        twt = twtlist[i];
+        if (twtmatch(searchterm, twt)){
+            twt.color = is_rt(twt) ? rt_color : hit_color; 
+            modlist[modlist.length] = i;
+            latest_search = i
+
+        }
+    }
+    return;
+}
+
+/*
     function searchwordterm(term){    
         for (var i=0; i<wordset[term].length; i++){
             twt = twtlist[wordset[term][i]];
@@ -315,7 +338,7 @@ function scantwt(searchterm){
                     }
     }
 }
-
+*/
 //search tweet, called when search input field changed (onkeyup)
 function searchtwt(e){
     var keynum, twt;

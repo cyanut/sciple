@@ -3,8 +3,8 @@ var search_intvl = 12000;
 var disp_intvl = 100;
 var search_term = "#sfn11";
 var twtblock = "twtblock";
-var maxtwt = -1;
-var maxq = 1000;
+var maxtwt = 100;
+var maxq = 10000;
 var baseurl = "http://search.twitter.com/search.json?callback=enqarr&result_type=recent&q=";
 var ubase;
 var rpp=50; //#of tweets per retrival
@@ -43,6 +43,9 @@ function start(){
     //sinceid = 0; 
     ubase = baseurl + escape(search_term);
     getJSON(ubase);
+    while (lenq() > maxtwt)
+       addtweet(twtblock);
+    maxtwt = -1;
     checkid = setInterval(function(){ addtweet(twtblock); }, disp_intvl);
     searchid = setInterval(function(){ getJSON(ubase) }, search_intvl);
 }
@@ -55,12 +58,14 @@ function cleartwts(){
 
 function addtweet(id){
     if (lenq() > 0){
+
         var twtblock = document.getElementById(id);
         var twt = deq();
         cntupdate();
         var divstr = getdivstr(twt);
-        twtblock.innerHTML = divstr + twtblock.innerHTML;
-            swirladdtweet(twt);
+        if (maxtwt < 0 || lenq() < maxtwt)
+            twtblock.innerHTML = divstr + twtblock.innerHTML;
+        swirladdtweet(twt);
         if (maxtwt > 0 && twtblock.childNodes.length > maxtwt){
             twtblock.removeChild(twtblock.lastChild);
         }
@@ -129,7 +134,7 @@ function enqarr(arrjson){
 }
 
 function sorttweet(a, b){
-    return  parseInt(a.id) - parseInt(b.id);
+    return  parseInt(a.id_str) - parseInt(b.id_str);
 }
 
 function enq(json){
